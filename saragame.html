@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Surprise</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: 'VL Gothic', sans-serif;
+      background-color: #fff8b0;
+      
+
+    }
+    #homeImage {
+      position: absolute;
+      top: 25%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 300px; /* Set the width of your image */
+      height: auto;
+    }
+    #playButton {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
+      padding: 10px 20px;
+      cursor: pointer;
+      background-color: #292828;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+    }
+    #gameContainer {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://cdn.discordapp.com/attachments/1178636317979049994/1178636384773353545/background-transformed.jpeg?ex=6576ddac&is=656468ac&hm=d47b90c2adb36488e87661303571ee4c126c2ce4dbcc43f856b826fd6eb6fa57&') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      transform: translateY(0%);
+    }
+    #character {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      /* Add styling for your character */
+    }
+    #textArea {
+      position: absolute;
+      bottom: 0px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      background: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/af00df2a-e0d5-4622-81f2-da8ae9205d4f/dd17hq0-57269179-dbc5-45c5-ac1d-cd91055af1e9.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2FmMDBkZjJhLWUwZDUtNDYyMi04MWYyLWRhOGFlOTIwNWQ0ZlwvZGQxN2hxMC01NzI2OTE3OS1kYmM1LTQ1YzUtYWMxZC1jZDkxMDU1YWYxZTkucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.k0GYmArgGcoaoDmAikE7S1e61KowXqx2swyZxIeXsKM') center center no-repeat; /* Add your background image */
+      background-size: auto;
+      padding: 120px;
+      text-align: center;
+      font-size: 20px;
+      color: #fff;
+      border-radius: 0px;
+      text-shadow: 
+        -1px -1px 0 #000, 
+        1px -1px 0 #000, 
+        -1px 1px 0 #000, 
+        1px 1px 0 #000;   
+}
+    #creatorsNoteButton {
+      position: absolute;
+      top: 60%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
+      padding: 10px 20px;
+      cursor: pointer;
+      background-color: #292828;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+    }
+    #creatorsNoteScreen {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    #character {
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 750px; /* Set the width to make the character bigger */
+        height: auto; /* Maintain the aspect ratio */
+    } 
+    #passwordInput {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center; /* Center text within the container */
+}
+
+#password {
+  width: 500px; /* Set the width of the password input field */
+  padding: 10px; /* Add padding to the input field */
+  margin-bottom: 10px; /* Add margin at the bottom for spacing */
+}
+
+#passwordButton {
+  font-size: 18px; /* Adjust the font size of the button */
+  padding: 10px 20px; /* Adjust padding for the button */
+  cursor: pointer;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+}
+#photoContainer {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fab4c3;
+    color: #fff;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.photo {
+    width: 1500px;
+    height: 900px;
+    display: block;
+    margin: 0 auto;
+    top: 50%; /* Center the image vertically */
+    transform: translateY(-2.5%);
+    border: 50px solid white; /* Add a white border around the image */
+    box-sizing: border-box; /* Ensure that the border is included in the total width/height */
+}
+
+#backToGameButton {
+    position: absolute;
+    bottom: 20px; /* Adjust the bottom position */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 25px;
+    padding: 10px 20px;
+    cursor: pointer;
+    color: #fff;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.albumButtons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.albumButton {
+    font-size: 100px;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #fab4c3;
+    color: #FFFF;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+
+.albumButtons button:nth-child(1) {
+    order: -1;
+    margin-left: 1.5%
+}
+
+.albumButtons button:nth-child(2) {
+    order: 0;
+}
+
+.albumButtons button:nth-child(3) {
+    order: 1;
+    margin-right: 1.5%
+}
+
+#currentPhoto {
+    margin-top: 20px;
+}
+  </style>
+</head>
+<body>
+
+    <img src="pompompurin.png" id="homeImage" alt="Home Image">
+    <div id="playButton" onclick="startGame()">Play</div>
+    <div id="creatorsNoteButton" onclick="showPasswordPrompt()">Creators Note</div>
+    <div id="gameContainer">
+        <img src="mymelody.png" id="character" alt="Your Character">
+      <div id="textArea">Hi Vesper! To get to the next message, please press the Enter key!</div>
+    </div>
+    <div id="creatorsNoteScreen">
+      <p>Hi Sara, you may have seen something similar to this on tiktok pre sure Vesper resposted it. Anyways if you compare this one to the tiktok one i'm just sayin that guy had like 8 months to make his and i've had like 3 days AND NOT TO MENTION THAT I AM LEARNING JAVASCRIPT FROM SCRATCH JUST FOR THIS PROJECT XD obviously this isn't challenging for me since I ranked first in the hardest UOA stage 2 computer science paper. Vesper came to me with this idea on the 25th but I have work full day on 26th (today) and 27th so yea i'm coping in case the quality isn't up to ur standard if you find any bugs or glitches I apologize in advance im still a noob when it comes to making websites like this. Anyways u are actually a really nice human being even though u keep gaslighting urself that u aren't, u treat (mostly) everyone so kindly and i believe that you deserve everything nice coming your way. I am so grateful to have such a great friend like you and i hope this brings a smile to your face and that you have a lovely day today and more lovely days to come. <br><br><span style="font-size: 24px;">Happy Birthday!</span><br><br> P.S. the password is pretty easy to find so if you get into this screen Vesper, respectfully f urself </p>
+      <button onclick="hideCreatorsNote()">Back to Home</button>
+    </div>
+    <div id="passwordContainer" style="display: none; text-align: center;">
+      <input type="password" id="password" placeholder="Enter password">
+      <div id="passwordInfo" style="color: red;">Hint: What is your favourite 4 digit number...</div>
+      <button id="passwordButton" onclick="checkPassword()">Submit</button>
+    </div>
+    <div id="photoContainer">
+    <button id="backToGameButton" onclick="hidePhotoAlbum()">Back to Game</button>
+    <div class="albumButtons">
+      <button class="albumButton" onclick="prevPhoto()">&#9665;</button>
+      <img id="currentPhoto" class="photo" src="" alt="Photo">
+      <button class="albumButton" onclick="nextPhoto()">&#9655;</button>
+  </div>
+    </div>
+</div>
+  <script>
+    const backgroundMusic = new Audio('http://mp3anime.net/embed/4');
+    backgroundMusic.setAttribute('preload', 'auto'); // This line is added to preload the audio
+    function startGame() {
+      document.getElementById('playButton').style.display = 'none';
+      document.getElementById('homeImage').style.display = 'none'; // Hide the home image
+      document.getElementById('gameContainer').style.display = 'block';
+      document.addEventListener('keydown', changeText);
+      backgroundMusic.play().then(() => {
+                // Autoplay succeeded
+            }).catch(error => {
+                console.log('Autoplay failed:', error);
+                // If autoplay failed, you can ask the user to interact with the page and then try again
+            });
+      backgroundMusic.play();
+    }
+
+    let subtitleIndex = 0; // Add this variable to keep track of the subtitle index
+    let currentPhotoIndex = 0;
+    function changeText(event) {
+        if (event.key === 'Enter') {
+            const subtitles = [
+                'HI VESPER',
+                'HAPPY BIRTHDAY VESPER',
+                'CLICK ON ME TO SEE MY FAVOURITE MOMENTS WITH YOU',
+                'BYE BYE',
+      // Add more subtitles as needed
+            ];
+
+            if (subtitleIndex < subtitles.length) {
+                document.getElementById('textArea').innerText = subtitles[subtitleIndex];
+                subtitleIndex++;
+            } else {
+                // If all subtitles are displayed, you can handle this case or loop back to the beginning
+                subtitleIndex = 0;
+            }
+        }
+    }  
+    function showCreatorsNote() {
+        // Show the creators note screen
+        document.getElementById('creatorsNoteScreen').style.display = 'block';
+        // Hide the creators note button
+        document.getElementById('creatorsNoteButton').style.display = 'none';
+        // Re-enable text changes after closing the note screen
+        document.addEventListener('keydown', changeText);
+    }
+
+    function hideCreatorsNote() {
+        // Reset the password input field
+        document.getElementById('password').value = '';
+        // Hide the creators note screen
+        document.getElementById('creatorsNoteScreen').style.display = 'none';
+        // Show the creators note button
+        document.getElementById('creatorsNoteButton').style.display = 'block';
+    }
+
+    function showPasswordPrompt() {
+    // Show the password input prompt
+    document.getElementById('passwordContainer').style.display = 'block';
+  }
+
+  function checkPassword() {
+        const enteredPassword = document.getElementById('password').value;
+        // Replace 'yourPassword' with your actual password
+        if (enteredPassword === '3005') {
+            // Password is correct, show the creators note
+            showCreatorsNote();
+            // Hide the password input prompt
+            document.getElementById('passwordContainer').style.display = 'none';
+        } else {
+            // Password is incorrect, you can show an error message or take other actions
+            console.log('Incorrect password');
+        }
+    }
+    const photoUrls = [
+    'https://static.foxnews.com/foxnews.com/content/uploads/2023/05/LeBron-James3.jpg',
+    'https://sportshub.cbsistatic.com/i/r/2023/11/20/705cd827-1f9f-4b46-80c9-9351413a24aa/thumbnail/1200x675/45cb298e57121fb3f7607ecda5f140b3/lebron-james-usatsi.jpg',
+    'https://lebronwire.usatoday.com/wp-content/uploads/sites/37/2023/06/USATSI_20731942-e1687689992853.jpg?w=1000&h=600&crop=1',
+    // Add more photo URLs as needed
+  ];
+
+  function displayPhoto(index) {
+    const currentPhoto = document.getElementById('currentPhoto');
+    currentPhoto.src = photoUrls[index];
+  }
+
+  function hidePhotoAlbum() {
+    document.getElementById('photoContainer').style.display = 'none';
+    document.getElementById('textArea').style.display = 'block';
+    document.getElementById('gameContainer').style.display = 'block';
+
+    // Show the "creatorsNoteButton" button when hiding the photo album
+    document.getElementById('creatorsNoteButton').style.display = 'block';
+}
+
+  function nextPhoto() {
+    currentPhotoIndex = (currentPhotoIndex + 1) % photoUrls.length;
+    displayPhoto(currentPhotoIndex);
+  }
+
+  function prevPhoto() {
+    currentPhotoIndex = (currentPhotoIndex - 1 + photoUrls.length) % photoUrls.length;
+    displayPhoto(currentPhotoIndex);
+  }
+
+  function displayPhotoAlbum() {
+        document.getElementById('photoContainer').style.display = 'block';
+        document.getElementById('textArea').style.display = 'none';
+        document.getElementById('gameContainer').style.display = 'none';
+        // Display the first photo when the character is clicked
+        displayPhoto(currentPhotoIndex);
+    }
+
+  // Set the onclick event for the character to call the displayPhotoAlbum function
+  document.getElementById('photoContainer').style.display = 'none';
+  document.getElementById('character').onclick = displayPhotoAlbum;
+</script>
+</body>
+</html>
