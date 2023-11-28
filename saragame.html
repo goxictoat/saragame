@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Birthday Surprise</title>
+  <title>sarabday</title>
   <style>
     body {
       margin: 0;
@@ -234,20 +234,11 @@
     </div>
 </div>
   <script>
-    const backgroundMusic = new Audio('http://mp3anime.net/embed/4');
-    backgroundMusic.setAttribute('preload', 'auto'); // This line is added to preload the audio
     function startGame() {
       document.getElementById('playButton').style.display = 'none';
       document.getElementById('homeImage').style.display = 'none'; // Hide the home image
       document.getElementById('gameContainer').style.display = 'block';
       document.addEventListener('keydown', changeText);
-      backgroundMusic.play().then(() => {
-                // Autoplay succeeded
-            }).catch(error => {
-                console.log('Autoplay failed:', error);
-                // If autoplay failed, you can ask the user to interact with the page and then try again
-            });
-      backgroundMusic.play();
     }
 
     let subtitleIndex = 0; // Add this variable to keep track of the subtitle index
